@@ -1,5 +1,7 @@
 #include "test.h"
 
+#ifdef DEBUG
+
 //operator>
 bool test_operator_dayu(ll x, ll y)
 {
@@ -36,15 +38,15 @@ bool testall_operator_dayu()
 	return true;
 }
 
-//operator+
+//operator-
 bool test_operator_sub(ll x, ll y)
 {
-	if (High(x + y) == (High(x) + High(y)))
+	if (High(x - y) == (High(x) - High(y)))
 		return true;
 	else
 	{
 		cout << "x = " << x << " y = " << y;
-		cout << " 期望值 = " << High(x + y) << " 返回值 = " << (High(x) + High(y)) << endl;
+		cout << " 期望值 = " << High(x - y) << " 返回值 = " << (High(x) - High(y)) << endl;
 		return false;
 	}
 }
@@ -67,6 +69,9 @@ bool testall_operator_sub()
 	test_operator_sub(0, 20);
 	test_operator_sub(-20, 0);
 	test_operator_sub(0, -20);
+	test_operator_sub(100000, 20);
+	test_operator_sub(100000, -20);
+
 
 	
 
@@ -98,9 +103,124 @@ bool testall_operator_mod()
 	return true;
 }
 
+//operator+
 bool test_operator_add(ll x, ll y)
 {
+	if (High(x + y) == (High(x) + High(y)))
+		return true;
+	else
+	{
+		cout << "x = " << x << " y = " << y;
+		cout << " 期望值 = " << High(x + y) << " 返回值 = " << (High(x) + High(y)) << endl;
+		return false;
+	}
+}
+
+bool testall_operator_add()
+{
+	test_operator_add(20, 10);
+	test_operator_add(10, 20);
+	test_operator_add(0, 0);
+	test_operator_add(20, 20);
+	test_operator_add(-20, -20);
+	test_operator_add(20, -20);
+	test_operator_add(-20, 20);
+	test_operator_add(20, -10);
+	test_operator_add(-10, 20);
+	test_operator_add(-20, 10);
+	test_operator_add(10, -20);
+	test_operator_add(20, 0);
+	test_operator_add(0, 20);
+	test_operator_add(-20, 0);
+	test_operator_add(0, -20);
+	test_operator_add(100000, 20);
+	test_operator_add(100000, -20);
+
 	return false;
 }
 
+//addPos
+bool test_addPos(ull x, ull y)
+{
+	High ret(High::addPos(x, y));
+	High exp(x + y);
+
+	if (ret == exp)
+		return true;
+	else
+	{
+		cout << "x = " << x << " y = " << y;
+		cout << " 期望值 = " << exp << " 返回值 = " << ret << endl;
+		return false;
+	}
+}
+
+bool testall_addPos()
+{
+	test_addPos(0, 0);
+	test_addPos(20, 0);
+	test_addPos(0, 20);
+	test_addPos(20, 20);
+	test_addPos(100, 20);
+	test_addPos(20, 100);
+	test_addPos(10000000, 20);
+	test_addPos(7527537, 752661);
+
+	return false;
+}
+
+//DeleteHeadZero
+bool test_DeleteHeadZero(string s, string exp)
+{
+	string org(s);
+	High::DeleteHeadZero(s);
+	if (s == exp)
+		return true;
+	else
+	{
+		cout << "s = " << org << endl;
+		cout << " 期望值 = " << exp << " 返回值 = " << s << endl;
+		return false;
+	}
+}
+
+bool testall_DeleteHeadZero()
+{
+	test_DeleteHeadZero("00123", "123");
+	test_DeleteHeadZero("123", "123");
+	test_DeleteHeadZero("0123", "123");
+	test_DeleteHeadZero("0000", "0");
+	test_DeleteHeadZero("0", "0");
+	test_DeleteHeadZero("011001", "11001");
+
+	return false;
+}
+
+bool test_subPos(ll x, ll y)
+{
+	High ret(High::subPos(x, y));
+	High exp(x - y);
+
+	if (ret == exp)
+		return true;
+	else
+	{
+		cout << "x = " << x << " y = " << y;
+		cout << " 期望值 = " << exp << " 返回值 = " << ret << endl;
+		return false;
+	}
+}
+
+bool testall_subPos()
+{
+	test_subPos(20, 0);
+	test_subPos(0, 0);
+	test_subPos(100, 100);
+	test_subPos(100, 20);
+	test_subPos(100000000, 20);
+
+	return false;
+}
+
+#endif // DEBUG
 

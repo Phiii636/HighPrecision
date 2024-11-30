@@ -1,7 +1,5 @@
 #include "HighPrecision.h"
 
-//asasdasd
-
 namespace my
 {
 	High::High(const string& _s)
@@ -161,11 +159,9 @@ namespace my
 		//还原为字符串
 		string s_out = ToStr(digs);
 
-		//删除首位0
-		if (s_out[0] == '0')
-			s_out.erase(0, 1);
+		DeleteHeadZero(s_out);
 
-		return High(s_out, POSITIVE);
+		return High(s_out, s_out == "0" ? ZERO : POSITIVE);
 	}
 
 	//全正减法
@@ -200,11 +196,9 @@ namespace my
 
 		string s_out = ToStr(digs_out);
 
-		//删除0
-		while (s_out[0] == '0')
-			s_out.erase(0, 1);
+		DeleteHeadZero(s_out);
 
-		return High(s_out, s_out == "" ? ZERO : POSITIVE);
+		return High(s_out, s_out == "0" ? ZERO : POSITIVE);
 	}
 
 	//赋值
@@ -312,8 +306,7 @@ namespace my
 
 		string s_out = ToStr(digs_out);
 
-		while (s_out[0] == '0')
-			s_out.erase(0, 1);
+		DeleteHeadZero(s_out);
 
 		//同号为正，异号为负
 		POSNEG posneg_out{};
@@ -344,8 +337,8 @@ namespace my
 		{
 			y -= x;
 
-			for (ull i = 1; i <= 20; ++i)
-				cout << y << endl;
+			//for (ull i = 1; i <= 20; ++i)
+			//	cout << y << endl;
 		
 		}
 
@@ -527,6 +520,15 @@ namespace my
 		return true;
 	}
 
+	//删除首位0
+	void High::DeleteHeadZero(string& _s)
+	{
+		while (_s[0] == '0')
+			_s.erase(0, 1);
+		if (_s == "")
+			_s += '0';
+	}
+
 	//字符转换为数字
 	digit High::ToNum(char c)
 	{
@@ -556,10 +558,12 @@ namespace my
 	}
 
 
+	/*测试函数*/
 
-
-
-
-
+	//获取s
+	string High::getStr() const
+	{
+		return s;
+	}
 
 }

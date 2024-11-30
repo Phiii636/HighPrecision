@@ -5,6 +5,9 @@
 #include <algorithm>
 #include <cmath>
 
+//调试开关
+#define DEBUG
+
 using namespace std;
 
 typedef long long ll;
@@ -47,6 +50,9 @@ namespace my
 		static bool isSamePosneg(const High& x, const High& y);
 		static void swap(High& x, High& y);
 	private:
+#ifdef DEBUG
+	public:
+#endif // DEBUG
 		static High addPos(const High& x, const High& y);
 		static High subPos(const High& x, const High& y);
 
@@ -99,16 +105,25 @@ namespace my
 
 		//中间层函数
 	private:
+#ifdef DEBUG
+	public:
+#endif // DEBUG
+
 		static bool StrIsStandard(const string& _s);
+		static void DeleteHeadZero(string& _s);
+
 	public:
 		//static char ToChar()
 		static digit ToNum(char c);
 		static char ToChar(digit d);
 		static string ToStr(vector<digit> _digs);
 
+#ifdef DEBUG
+	public:
+		string getStr() const;
 
 
-
+#endif
 	};
 
 }

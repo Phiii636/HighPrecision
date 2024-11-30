@@ -5,17 +5,12 @@ using namespace my;
 
 int main()
 {
-	//testall_operator_mod();
+	//testall_operator_sub();
+	//testall_operator_add();
 
-	High x(100001);
-	High y(100);
+	testall_subPos();
 
-	//if ((x % y) == (100001 % 100))
-	//	cout << "true" << endl;
-	//else
-	//	cout << "false" << endl;
-
-	x -= y;
-	cout << x << endl;
+	//string str = to_string(100000000);
+	//cout << str << endl;
 
 }
