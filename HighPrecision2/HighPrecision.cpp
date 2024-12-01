@@ -319,6 +319,37 @@ namespace my
 		return High(s_out, posneg_out);
 	}
 
+	//除法
+	High High::operator/(const High& x) const
+	{
+		if (x.posneg == ZERO)
+		{
+			cout << "错误！除法运算输入错误" << endl;
+			return High(0);
+		}
+
+		if (posneg == ZERO)
+			return High(0);
+
+		High x_abs(abs(x));
+		High y_abs(abs(*this));
+		High out(0);
+
+		while (y_abs > 0)
+		{
+			y_abs -= x_abs;
+			++out;
+		}
+
+		if (y_abs < 0)
+			--out;
+
+		if (!isSamePosneg(*this, x))
+			out.posneg = opposite(out.posneg);
+
+		return out;
+	}
+
 	//模
 	High High::operator%(const High& x) const
 	{
@@ -330,17 +361,8 @@ namespace my
 
 		High y(*this);
 
-		///
-
-
 		while (y > 0)
-		{
 			y -= x;
-
-			//for (ull i = 1; i <= 20; ++i)
-			//	cout << y << endl;
-		
-		}
 
 		return y + (y == 0 ? 0 : x);
 	}
@@ -360,6 +382,16 @@ namespace my
 		*this = *this * x;
 	}
 
+	void High::operator/=(const High& x)
+	{
+		*this = *this / x;
+	}
+
+	void High::operator%=(const High& x)
+	{
+		*this = *this % x;
+	}
+
 	High High::operator+(ll num) const
 	{
 		return *this + High(num);
@@ -376,6 +408,16 @@ namespace my
 		return *this * High(num);
 	}
 
+	High High::operator/(ll num) const
+	{
+		return *this / High(num);
+	}
+
+	High High::operator%(ll num) const
+	{
+		return *this % High(num);
+	}
+
 	void High::operator+=(ll num)
 	{
 		*this += High(num);
@@ -389,6 +431,16 @@ namespace my
 	void High::operator*=(ll num)
 	{
 		*this *= High(num);
+	}
+
+	void High::operator/=(ll num)
+	{
+		*this /= High(num);
+	}
+
+	void High::operator%=(ll num)
+	{
+		*this %= High(num);
 	}
 
 	//前缀递增

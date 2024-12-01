@@ -12,7 +12,7 @@ using namespace std;
 
 typedef long long ll;
 typedef unsigned long long ull;
-typedef unsigned digit;
+typedef int digit;
 
 namespace my
 {
@@ -63,26 +63,26 @@ namespace my
 		High operator+(const High& x) const;
 		High operator-(const High& x) const;
 		High operator*(const High& x) const;
-		//High operator/(const High& x) const;
+		High operator/(const High& x) const;
 		High operator%(const High& x) const;
 
 		void operator+=(const High& x);
 		void operator-=(const High& x);
 		void operator*=(const High& x);
-		//void operator/=(const High& x);
-		//void operator%=(const High& x);
+		void operator/=(const High& x);
+		void operator%=(const High& x);
 
 		High operator+(ll num) const;
 		High operator-(ll num) const;
 		High operator*(ll num) const;
-		//High operator/(ll num) const;
-		//High operator%(ll num) const;
+		High operator/(ll num) const;
+		High operator%(ll num) const;
 
 		void operator+=(ll num);
 		void operator-=(ll num);
 		void operator*=(ll num);
-		//void operator/=(ll num);
-		//void operator%=(ll num);
+		void operator/=(ll num);
+		void operator%=(ll num);
 
 		void operator++();
 		void operator--();
@@ -113,7 +113,6 @@ namespace my
 		static void DeleteHeadZero(string& _s);
 
 	public:
-		//static char ToChar()
 		static digit ToNum(char c);
 		static char ToChar(digit d);
 		static string ToStr(vector<digit> _digs);

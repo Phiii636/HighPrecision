@@ -1,5 +1,6 @@
 #pragma once
 #include "HighPrecision.h"
+#include <chrono>
 
 using namespace my;
 
@@ -25,5 +26,8 @@ bool testall_DeleteHeadZero();
 
 bool test_subPos(ll x, ll y);
 bool testall_subPos();
+
+bool test_operator_div(ll x, ll y);
+bool testall_operator_chu();
 
 #endif // DEBUG

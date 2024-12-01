@@ -218,6 +218,43 @@ bool testall_subPos()
 	test_subPos(100, 100);
 	test_subPos(100, 20);
 	test_subPos(100000000, 20);
+	test_subPos(200000000, 20);
+
+	return false;
+}
+
+//operator/
+bool test_operator_div(ll x, ll y)
+{
+	if (High(x / y) == (High(x) / High(y)))
+		return true;
+	else
+	{
+		cout << "x = " << x << " y = " << y;
+		cout << " 期望值 = " << High(x / y) << " 返回值 = " << (High(x) / High(y)) << endl;
+		return false;
+	}
+}
+
+bool testall_operator_chu()
+{
+	test_operator_div(100, 20);
+	test_operator_div(0, 20);
+	test_operator_div(100, 19);
+	test_operator_div(20, 19);
+	test_operator_div(20, 20);
+
+	//auto start = chrono::high_resolution_clock::now();
+	test_operator_div(10000000, 10);
+	//auto end = chrono::high_resolution_clock::now();
+	//chrono::duration<double, milli> elapsed = end - start;
+	//cout << "Elapsed time: " << elapsed.count() << " ms" << endl;
+	
+	test_operator_div(-100, 20);
+	test_operator_div(100, -20);
+	test_operator_div(-100, -20);
+	test_operator_div(753745278, 75786);
+	test_operator_div(4563, 50000);
 
 	return false;
 }
